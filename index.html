@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--Kaibin Wu-->
+<html>
+    <head>
+        <title>Final Project: CST Airline Survey</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+            function checkform()
+            {
+                dayOK = false;
+                monthOK = false;
+                yearOK = false;
+                flightNumOK = false;
+                friendlinessOK =false;
+                spaceOK = false;
+                comfortOK = false;
+                cleanlinessOK = false;
+                noiseOK = false;
+                formOK = false;
+
+                inputDay = document.form1.dayTxtBx.value;
+                inputMonth = document.form1.monthTxtBx.value;
+                inputYear = document.form1.yearTxtBx.value;
+                inputFlightNum = document.form1.flightNumTxtBx.value;
+                var inputFriendliness = document.form1.friendliness;
+                var inputSpace = document.form1.space;
+                var inputComfort = document.form1.comfort;
+                var inputCleanliness = document.form1.cleanliness;
+                var inputNoise = document.form1.noise;
+
+                if(inputDay !="" && !isNaN(inputDay) && inputDay <=31) dayOK = true;
+                if(inputMonth !="" && !isNaN(inputMonth) && inputMonth <=12) monthOK = true;
+                if(inputYear !="" && !isNaN(inputYear)) yearOK = true;
+                
+                if(inputFlightNum !="") flightNumOK = true;
+                for(var i = 0; i< inputFriendliness.length;i++){
+                    if(inputFriendliness[i].checked) friendlinessOK =true;
+                    if(inputSpace[i].checked) spaceOK =true;
+                    if(inputComfort[i].checked) comfortOK =true;
+                    if(inputCleanliness[i].checked) cleanlinessOK =true;
+                    if(inputNoise[i].checked) noiseOK =true;
+                }
+
+                if((inputMonth == 4 || inputMonth == 6 || inputMonth == 9 || inputMonth == 11) && inputDay >30)
+                    monthOK = false;
+                
+                if(inputMonth == 2 && inputDay >29)
+                    dayOK = false;
+                
+                formOK = dayOK && monthOK && yearOK && flightNumOK && friendlinessOK
+                    && spaceOK && comfortOK && cleanlinessOK && noiseOK;
+
+                if(formOK == true) return true;
+                else{
+                    alert("Plase enter all inputs correctly and rate our service. Thank you.");
+                    return false;
+                }
+                
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Final Project: CST Airline Survey</h2>
+        <p>Please take a moment to fill out the survey, your suggestion will make a good impact to our service.</p>
+        <form name="form1" action="survey.jsp" onsubmit="return checkform()">
+            Date of your flight:
+            <input type="text" name="dayTxtBx" placeholder="day" maxlength="2"/>&nbsp;
+            <input type="text" name="monthTxtBx" placeholder="month" maxlength="2"/>&nbsp;
+            <input type="text" name="yearTxtBx" placeholder="year" maxlength="4"/>
+            <br/><br/>
+            Flight Number:
+            <input type="text" name="flightNumTxtBx"/>
+            <br/><br/>
+            1. Friendliness of customer staff <br/>
+            <input type="radio" name="friendliness" value="No Opinion" />No Opinion&nbsp;
+            <input type="radio" name="friendliness" value="Poor" />Poor&nbsp;
+            <input type="radio" name="friendliness" value="Fair" />Fair&nbsp;
+            <input type="radio" name="friendliness" value="Good" />Good&nbsp;
+            <input type="radio" name="friendliness" value="Excellent" />Excellent
+            <br/><br/>
+            2. Space for luggage storage <br/>
+            <input type="radio" name="space" value="No Opinion"/>No Opinion&nbsp;
+            <input type="radio" name="space" value="Poor" />Poor&nbsp;
+            <input type="radio" name="space" value="Fair" />Fair&nbsp;
+            <input type="radio" name="space" value="Good" />Good&nbsp;
+            <input type="radio" name="space" value="Excellent" />Excellent
+            <br/><br/>
+            3. Comfort of seating <br/>
+            <input type="radio" name="comfort" value="No Opinion"/>No Opinion&nbsp;
+            <input type="radio" name="comfort" value="Poor" />Poor&nbsp;
+            <input type="radio" name="comfort" value="Fair" />Fair&nbsp;
+            <input type="radio" name="comfort" value="Good" />Good&nbsp;
+            <input type="radio" name="comfort" value="Excellent" />Excellent
+            <br/><br/>
+            4. Cleanliness of aircraft <br/>
+            <input type="radio" name="cleanliness" value="No Opinion"/>No Opinion&nbsp;
+            <input type="radio" name="cleanliness" value="Poor" />Poor&nbsp;
+            <input type="radio" name="cleanliness" value="Fair" />Fair&nbsp;
+            <input type="radio" name="cleanliness" value="Good" />Good&nbsp;
+            <input type="radio" name="cleanliness" value="Excellent" />Excellent
+            <br/><br/>
+            5. Noise level of aircraft <br/>
+            <input type="radio" name="noise" value="No Opinion"/>No Opinion&nbsp;
+            <input type="radio" name="noise" value="Poor" />Poor&nbsp;
+            <input type="radio" name="noise" value="Fair" />Fair&nbsp;
+            <input type="radio" name="noise" value="Good" />Good&nbsp;
+            <input type="radio" name="noise" value="Excellent" />Excellent
+            <br/><br/>
+            <input type="submit" value="Submit"/>
+        </form>
+
+        <br/><br/>
+        
+        <form action="record.jsp">
+            <input type="submit" value="Check Record"/>
+        </form>
+    </body>
+</html>
